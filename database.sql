@@ -30,10 +30,10 @@ INSERT INTO department (name) VALUES
     ('Estimating'), 
     ('Overhead');
 
-INSERT INTO role (title, salary, department_id) VALUE 
-    ('Receptionist', $35,000, 'Overhead'), 
-    ('Production Estimator', $30,900, 'Estimating'), 
-    ('Customer Service Representative', $40,000, 'Sales');
+INSERT INTO role (title, salary, department_id) VALUES 
+    ('Receptionist', 35000.00, '1'), 
+    ('Production Estimator', 30900.00, '2'), 
+    ('Customer Service Rep', 40000.00, '3');
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES 
     ('Jenni', 'Rams', 1, 1),
