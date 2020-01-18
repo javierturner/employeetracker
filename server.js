@@ -102,4 +102,15 @@ function viewAllEmployees() {
 // function removeEmployee()
 // function updateEmpRole()
 // function updateEmpManager()
-// function viewAllRoles()
+
+function viewAllRoles() {
+    console.log("Showing all roles...\n");
+    connection.query("SELECT * FROM role ", function(err, res) {
+        if (err) throw err;
+        for (var i = 0; i < res.length; i++) {
+            console.log(res[i].id + " | " + res[i].title + " | " + res[i].salary + " | " + res[i].department_id );
+        }
+        console.log("----------------");  
+    })
+    connection.end();
+}
