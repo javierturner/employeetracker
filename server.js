@@ -43,7 +43,7 @@ function start() {
         ]
     })
         .then(function (answer) {
-            switch (data.answer) {
+            switch (answer.action) {
                 case "View All Employees":
                     viewAllEmployees();
                     break;
@@ -81,3 +81,25 @@ function start() {
                     break;
             }})
 }
+
+//functions for inquirer choices
+function viewAllEmployees() {
+    console.log("Showing all employees...\n");
+    connection.query("SELECT * FROM employee ", function(err, res) {
+        if (err) throw err;
+        for (var i = 0; i < res.length; i++) {
+            console.log(res[i].id + " | " + res[i].first_name + " | " + res[i].last_name );
+        }
+        console.log("----------------");  
+    })
+    connection.end();
+}
+
+
+// function viewEmpByDept()
+// function viewEmpByMan()
+// function addEmployee()
+// function removeEmployee()
+// function updateEmpRole()
+// function updateEmpManager()
+// function viewAllRoles()
