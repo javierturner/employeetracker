@@ -152,7 +152,22 @@ function addEmployee() {
     })
 }
 
-// function removeEmployee()
+function removeEmployee() {
+    inquirer.prompt([
+        {
+            name: "employee_id",
+            type: "input",
+            message: "What is the employee's id?"
+        },
+    ]).then(function (answer) {
+        connection.query("DELETE FROM employee WHERE ?", { id: answer.employee_id }, 
+        function (err, res) {
+            if (err) throw err;
+            viewAllEmployees();
+        })
+    })
+}
+
 // function updateEmpRole()
 // function updateEmpManager()
 // function viewEmpByDept()
