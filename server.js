@@ -27,25 +27,34 @@ connection.connect(function (err) {
 //start inquirer prompting
 function start() {
     inquirer.prompt({
-        name: "action",
+        name: "firstChoice",
         type: "list",
         message: "What would you like to do?",
         choices: [
             "View All Employees",
+            "View All Departments",
+            "View All Roles",
             "View All Employees by Department",
-            "View All Employees by Manager",
+            "View All EMployees by Manager",
             "Add Employee",
             "Remove Employee",
             "Update Employee Role",
             "Update Employee Manager",
-            "View All Roles",
-            "Done"
+            "Exit"
         ]
     })
         .then(function (answer) {
-            switch (answer.action) {
+            switch (answer.firstChoice) {
                 case "View All Employees":
                     viewAllEmployees();
+                    break;
+
+                case "View All Departments":
+                    viewAllDepts();
+                    break;
+
+                case "View All Roles":
+                    viewAllRoles();
                     break;
 
                 case "View All Employees by Department":
@@ -72,25 +81,22 @@ function start() {
                     updateEmpManager();
                     break;
 
-                case "View All Roles":
-                    viewAllRoles();
-                    break;
-
-                case "Exit Application":
+                case "Exit":
                     connection.end();
                     break;
-            }})
+            }
+        })
 }
 
 //functions for inquirer choices
 function viewAllEmployees() {
     console.log("Showing all employees...\n");
-    connection.query("SELECT * FROM employee ", function(err, res) {
+    connection.query("SELECT * FROM employee ", function (err, res) {
         if (err) throw err;
         for (var i = 0; i < res.length; i++) {
-            console.log(res[i].id + " | " + res[i].first_name + " | " + res[i].last_name );
+            console.log(res[i].id + " | " + res[i].first_name + " | " + res[i].last_name);
         }
-        console.log("----------------");  
+        console.log("----------------");
     })
     connection.end();
 }
@@ -103,14 +109,23 @@ function viewAllEmployees() {
 // function updateEmpRole()
 // function updateEmpManager()
 
+function viewAllDepts() {
+    console.log("Showing all departments...\n");
+    connection.query("SELECT * FROM department ", function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        connection.end();
+    });
+};
+
 function viewAllRoles() {
     console.log("Showing all roles...\n");
-    connection.query("SELECT * FROM role ", function(err, res) {
+    connection.query("SELECT * FROM role ", function (err, res) {
         if (err) throw err;
         for (var i = 0; i < res.length; i++) {
-            console.log(res[i].id + " | " + res[i].title + " | " + res[i].salary + " | " + res[i].department_id );
+            console.log(res[i].id + " | " + res[i].title + " | " + res[i].salary + " | " + res[i].department_id);
         }
-        console.log("----------------");  
+        console.log("----------------");
     })
     connection.end();
 }
