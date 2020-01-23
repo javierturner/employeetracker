@@ -101,13 +101,62 @@ function viewAllEmployees() {
     connection.end();
 }
 
+function viewAllRoles() {
+    console.log("Showing all roles...\n");
+    connection.query("SELECT * FROM role ", function (err, res) {
+        if (err) throw err;
+        for (var i = 0; i < res.length; i++) {
+            console.table(res[i].title);
+        }
+        connection.end();
+    })
+}
 
-// function viewEmpByDept()
-// function viewEmpByMan()
-// function addEmployee()
+function addEmployee() {
+    inquirer.prompt([{
+        name: "fname",
+        type: "input",
+        message: "What is the employee's first name?"
+    },
+    {
+        name: "lname",
+        type: "input",
+        message: "What is the employee's last name?"
+    },
+    {
+        name: "manager",
+        type: "input",
+        message: "Who is the employee's manager?"
+    },
+    {
+        name: "manager_id",
+        type: "input",
+        message: "What is the employee's manager's id?"
+    },
+    {
+        name: "role_id",
+        type: "input",
+        message: "What is the employee's role id?"
+    }]).then(function (answer) {
+        connection.query("INSERT INTO employee SET ?", {
+            first_name: answer.fname,
+            last_name: answer.lname,
+            role_id: answer.role_id,
+            manager: answer.manager,
+            manager_id: answer.manager_id,
+        }, function (err, res) {
+            if (err) throw err;
+            console.log("You have added your new employee!");
+            viewAllEmployees();
+        })
+    })
+}
+
 // function removeEmployee()
 // function updateEmpRole()
 // function updateEmpManager()
+// function viewEmpByDept()
+// function viewEmpByMan()
 
 function viewAllDepts() {
     console.log("Showing all departments...\n");

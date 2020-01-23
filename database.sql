@@ -21,6 +21,7 @@ CREATE TABLE employee (
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INT NOT NULL,
+    manager VARCHAR(30) NOT NULL,
     manager_id INT 
 );
 
@@ -35,6 +36,6 @@ INSERT INTO role (title, salary, department_id) VALUES
     ('Production Estimator', 30900.00, '2'), 
     ('Customer Service Rep', 40000.00, '3');
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES 
-    ('Jenni', 'Rams', 1, 1),
-    ('Ann', 'Cabana', 2, 2);
+INSERT INTO employee (first_name, last_name, role_id, manager, manager_id) VALUES 
+    ('Jenni', 'Rams', 1, 'Kate', 1),
+    ('Ann', 'Cabana', 2, 'Cole', 2);
