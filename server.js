@@ -34,12 +34,9 @@ function start() {
             "View All Employees",
             "View All Departments",
             "View All Roles",
-            "View All Employees by Department",
-            "View All EMployees by Manager",
             "Add Employee",
             "Remove Employee",
             "Update Employee Role",
-            "Update Employee Manager",
             "Exit"
         ]
     })
@@ -57,14 +54,6 @@ function start() {
                     viewAllRoles();
                     break;
 
-                case "View All Employees by Department":
-                    viewEmpByDept();
-                    break;
-
-                case "View All Employees by Manager":
-                    viewEmpByMan();
-                    break;
-
                 case "Add Employee":
                     addEmployee();
                     break;
@@ -75,10 +64,6 @@ function start() {
 
                 case "Update Employee Role":
                     updateEmpRole();
-                    break;
-
-                case "Update Employee Manager":
-                    updateEmpManager();
                     break;
 
                 case "Exit":
@@ -160,15 +145,39 @@ function removeEmployee() {
             message: "What is the employee's id?"
         },
     ]).then(function (answer) {
-        connection.query("DELETE FROM employee WHERE ?", { id: answer.employee_id }, 
-        function (err, res) {
-            if (err) throw err;
-            viewAllEmployees();
-        })
+        connection.query("DELETE FROM employee WHERE ?", { id: answer.employee_id },
+            function (err, res) {
+                if (err) throw err;
+                viewAllEmployees();
+            })
     })
 }
 
-// function updateEmpRole()
+function updateEmpRole() {
+    inquirer.prompt([{
+        name: "fname",
+        type: "input",
+        message: "What is the employee's first name?"
+    },
+    {
+        name: "role_id",
+        type: "input",
+        message: "What is the employee's new role id?"
+    },]).then(function (answer) {
+        connection.query("UPDATE employee SET ? WHERE ?",
+            [{
+                role_id: answer.role_id,
+            },
+            {
+                first_name: answer.fname,
+            }], function (err, res) {
+                if (err) throw err;
+                viewAllEmployees();
+            })
+    });
+}
+
+
 // function updateEmpManager()
 // function viewEmpByDept()
 // function viewEmpByMan()

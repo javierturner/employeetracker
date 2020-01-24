@@ -39,3 +39,5 @@ INSERT INTO role (title, salary, department_id) VALUES
 INSERT INTO employee (first_name, last_name, role_id, manager, manager_id) VALUES 
     ('Jenni', 'Rams', 1, 'Kate', 1),
     ('Ann', 'Cabana', 2, 'Cole', 2);
+
+USE management_system_db;
