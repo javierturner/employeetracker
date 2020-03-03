@@ -1,14 +1,14 @@
 # Employee Tracker
 
-##Description:
+## Description:
 This application combines Node, Inquirer, and MySql to allow employers to keep track of their employees. They can also view and manage departments and roles. is a content management system that employers can use to keep track of their employees. 
 
-##Screenshots of completed application
+## Screenshots of completed application
 
 ![Employee Tracker](./assets/terminal_screenshot.gif)
 
 
-##Installation:
+## Installation:
 Step 1: In Github, create a clone of the repository
 Step 2: Navigate to folder location in your terminal
 Step 3: Run 'npm install' in your terminal to install dependencies
@@ -16,12 +16,12 @@ Step 4: Copy the information from 'schema.sql' and 'seeds.sql' into MySQLWOrkben
 Step 5: Now that everything is installed, run 'node server.js' and follow prompts
 
 
-##Credits:
+## Credits:
 TA's
 Classmates (DeVante Bailey, Corey Marshman)
 
 
-##License
+## License
 
 MIT License
 
